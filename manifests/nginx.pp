@@ -8,4 +8,10 @@ class vector::nginx {
     require  => Class['vector::install']
   }
 
+  include ufw
+
+  ufw::allow { 'http':
+    port => '80',
+    ip   => 'any'
+  }
 }

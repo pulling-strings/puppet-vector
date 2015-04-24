@@ -5,18 +5,19 @@ class vector::pcp(
 ) {
 
   validate_string($from)
+
   package{['pcp', 'pcp-webapi']:
     ensure  => present
   }
 
   include ufw
+
   ufw::allow { 'pcp webui':
     from => $from,
-    port => $port
+    port => $port,
+    ip   => 'any'
   }
 
-  ufw::allow { 'ssh':
-    port => '22'
-  }
+  
   
 }
